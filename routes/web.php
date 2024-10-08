@@ -17,3 +17,5 @@ Route::get('/users/{user:id}', [MainController::class, 'user']);
 Route::get('/users/{user:id}/invoices', [MainController::class, 'invoices']);
 Route::post('/users/{user:id}/invoices/create', [MainController::class, 'createInvoice']);
 
+Route::get('/invoices/{invoice:id}', [MainController::class, 'invoice'])->name('invoice');
+

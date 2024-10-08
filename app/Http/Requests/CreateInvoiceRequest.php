@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace App\Http\Requests;
 
 use App\Enums\Status;
 use App\Models\User;

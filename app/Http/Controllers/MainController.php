@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\CreateInvoiceRequest;
+use App\Enums\Status;
+use App\Http\Requests\CreateInvoiceRequest;
 use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\User;
@@ -32,5 +33,11 @@ class MainController extends Controller
         $invoice->invoice_no = Invoice::generateNo();
         $invoice->total = $total;
         $invoice->save();
+        foreach ($orders as $order) {
+            $order->invoice_id = $invoice->id;
+            $order->status = Status::IN_PROGRESS;
+            $order->save();
+        }
+        return redirect()->route('invoice', $invoice);
     }
 }
