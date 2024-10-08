@@ -23,10 +23,13 @@ class MainController extends Controller
 
     public function createInvoice(CreateInvoiceRequest $request, User $user)
     {
+        dd($request->customRules($user));
         $validation = $request->validate($request->customRules($user));
         if(!empty($validation)) {
             dd($validation);
         }
+        dd($validation);
+
         $validated = $request->validated();
         $orders = Order::where('id', 'IN', $validated->orders)->get()->toArray();
         $total = array_sum(array_column($orders, 'total')) * config('settings.invoice_rate', 0.3);
