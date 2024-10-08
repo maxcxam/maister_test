@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Status;
 use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\User;
@@ -17,7 +18,7 @@ class OrderFactory extends Factory
         $users = User::all()->pluck('id');
         return [
             'title' => $this->faker->word(),
-            'state' => 'new',
+            'state' => Status::NEW,
             'total' => $this->faker->randomFloat(2, 10, 1000),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

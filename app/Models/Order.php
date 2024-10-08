@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
+use Illuminate\Database\Eloquent\Casts\AsEnumCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +27,12 @@ class Order extends Model
     public function invoice()
     {
         return $this->belongsTo(Invoice::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'state' => Status::class
+        ];
     }
 }
