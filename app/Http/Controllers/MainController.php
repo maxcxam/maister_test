@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\CreateInvoiceRequest;
+use App\Models\Invoice;
+use App\Models\Order;
 use App\Models\User;
 
 class MainController extends Controller
@@ -15,5 +18,19 @@ class MainController extends Controller
     public function user(User $user)
     {
         return view('user', compact('user'));
+    }
+
+    public function createInvoice(CreateInvoiceRequest $request, User $user)
+    {
+        $validation = $request->validate($request->customRules($user));
+        dd($validation);
+        $validated = $request->validated();
+        $orders = Order::where('id', 'IN', $validated->orders)->get()->toArray();
+        $total = array_sum(array_column($orders, 'total')) * config('settings.invoice_rate', 0.3);
+        $invoice = new Invoice;
+        $invoice->user_id = $user->id;
+        $invoice->invoice_no = Invoice::generateNo();
+        $invoice->total = $total;
+        $invoice->save();
     }
 }
