@@ -25,7 +25,7 @@ class MainController extends Controller
     {
         $validation = $request->validate($request->customRules($user));
         $orders = Order::whereIn('id', $validation['orders'])->get();
-        $total = array_sum(array_column($orders->toArray(), 'total')) * config('settings.invoice_rate', 0.3);
+        $total = $orders->sum('total') * config('settings.invoice_rate', 0.3);
         $invoice = new Invoice;
         $invoice->user_id = $user->id;
         $invoice->invoice_no = Invoice::generateNo();
