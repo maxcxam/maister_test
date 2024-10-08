@@ -17,7 +17,7 @@ class OrderFactory extends Factory
     {
         $users = User::all()->pluck('id');
         return [
-            'title' => $this->faker->word(),
+            'title' => $this->faker->words(3, true),
             'state' => Status::NEW,
             'total' => $this->faker->randomFloat(2, 10, 1000),
             'created_at' => Carbon::now(),
