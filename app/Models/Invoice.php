@@ -21,11 +21,11 @@ class Invoice extends Model
 
     public static function generateNo()
     {
-        $invoceNo = Str::random(6);
-        if(Invoice::where('invoice_no', $invoceNo)->exists()) {
+        $invoiceNo = Str::random(6);
+        if(Invoice::where('invoice_no', $invoiceNo)->exists()) {
             return self::generateNo();
         }
-        return $invoceNo;
+        return $invoiceNo;
     }
 
     public function user()

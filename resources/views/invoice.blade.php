@@ -34,6 +34,7 @@
 
     <!-- Invoice Items -->
     <div class="-mx-4 mt-8 flow-root sm:mx-0">
+        Orders:
         <table class="min-w-full">
             <colgroup>
                 <col class="w-full sm:w-1/2">
@@ -56,14 +57,18 @@
                         <div class="font-medium text-gray-900">{{$order->title}}</div>
                     </td>
                     <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0"></td>
-                    <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">${{$order->total * config('settings.invoice_rate', 0.3)}}</td>
+                    <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">${{$order->total * $fee}}</td>
                     <td class="py-5 pl-3 pr-4 text-right text-sm text-gray-500 sm:pr-0">${{$order->total}}</td>
                 </tr>
             @endforeach
             </tbody>
             <tfoot>
             <tr>
-                <th scope="row" colspan="3" class="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0">Total</th>
+                <th scope="row" colspan="3" class="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0">Orders total</th>
+                <td class="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">${{$invoice->orders->sum('total')}}</td>
+            </tr>
+            <tr>
+                <th scope="row" colspan="3" class="hidden pl-4 pr-3 pt-4 text-right text-sm font-semibold text-gray-900 sm:table-cell sm:pl-0">Total fee({{$fee*100}}%)</th>
                 <td class="pl-3 pr-4 pt-4 text-right text-sm font-semibold text-gray-900 sm:pr-0">${{$invoice->total}}</td>
             </tr>
             </tfoot>

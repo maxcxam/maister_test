@@ -42,6 +42,7 @@ class MainController extends Controller
 
     public function invoice(Invoice $invoice)
     {
-        return view('invoice', compact('invoice'));
+        $fee = config('settings.invoice_rate', 0.3);
+        return view('invoice', compact('invoice', 'fee'));
     }
 }
