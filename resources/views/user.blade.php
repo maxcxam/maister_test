@@ -1,15 +1,26 @@
-@extends('components.layouts.app')
-@section('layout')
+<x-layouts.app>
+    <h1 class="text-center font-semibold">Orders</h1>
+    @if (isset($errors) && count($errors))
+
+        There were {{count($errors->all())}} Error(s)
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }} </li>
+            @endforeach
+        </ul>
+
+    @endif
 <div class="container mx-auto">
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block w-full py-2 sm:px-6 lg:px-8">
                 <div class="overflow-hidden">
                     <form action="{{ route('invoices.create', ['user' => $user->id]) }}" method="POST">
-                        <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                        <table class="min-w-full text-left text-sm font-light text-surface">
                             <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                             <tr>
                                 <th scope="col" class="px-6 py-4"></th>
+                                <th scope="col" class="px-6 py-4">Order #</th>
                                 <th scope="col" class="px-6 py-4">Title</th>
                                 <th scope="col" class="px-6 py-4">State</th>
                                 <th scope="col" class="px-6 py-4">Total</th>
@@ -19,8 +30,9 @@
                             @foreach($user->orders as $order)
                                 <tr class="border-b border-neutral-200 dark:border-white/10">
                                     <td class="whitespace-nowrap px-6 py-4">
-                                        <input type="checkbox" value="{{ $order->id }}" name="orders[]"/>
+                                        <input type="checkbox" value="{{ $order->id }}" {{$order->state->equals(\App\Enums\Status::NEW) ? '' : 'disabled'}} name="orders[]"/>
                                     </td>
+                                    <td class="whitespace-nowrap px-6 py-4">{{ $order->id }} </td>
                                     <td class="whitespace-nowrap px-6 py-4">{{ $order->title }}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{ $order->state }}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{ $order->total }}</td>
@@ -44,4 +56,4 @@
         </div>
     </div>
 </div>
-@endsection
+</x-layouts.app>

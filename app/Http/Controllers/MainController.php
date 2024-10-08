@@ -23,26 +23,28 @@ class MainController extends Controller
 
     public function createInvoice(CreateInvoiceRequest $request, User $user)
     {
-        dd($request->customRules($user));
         $validation = $request->validate($request->customRules($user));
-        if(!empty($validation)) {
+        if(!empty($validation['errors'])) {
             dd($validation);
         }
-        dd($validation);
-
-        $validated = $request->validated();
-        $orders = Order::where('id', 'IN', $validated->orders)->get()->toArray();
-        $total = array_sum(array_column($orders, 'total')) * config('settings.invoice_rate', 0.3);
+        $orders = Order::whereIn('id', $validation['orders'])->get();
+        $total = array_sum(array_column($orders->toArray(), 'total')) * config('settings.invoice_rate', 0.3);
         $invoice = new Invoice;
         $invoice->user_id = $user->id;
         $invoice->invoice_no = Invoice::generateNo();
+        $invoice->state = Status::NEW;
         $invoice->total = $total;
         $invoice->save();
         foreach ($orders as $order) {
             $order->invoice_id = $invoice->id;
-            $order->status = Status::IN_PROGRESS;
+            $order->state = Status::IN_PROGRESS;
             $order->save();
         }
         return redirect()->route('invoice', $invoice);
+    }
+
+    public function invoice(Invoice $invoice)
+    {
+        dd($invoice);
     }
 }

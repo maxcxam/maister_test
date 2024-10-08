@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\Status;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,7 +17,7 @@ class CreateInvoiceRequest extends FormRequest
                 'required',
                 'array',
                 Rule::exists('orders', 'id')->where(function (Builder $query) use ($user){
-                    $query->where('status', Status::NEW)->where('user_id', $user->id);
+                    $query->where('state', Status::NEW)->where('user_id', $user->id);
                 })
             ],
         ];
