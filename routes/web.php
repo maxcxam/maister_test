@@ -14,4 +14,6 @@ Route::get('/refresh', function () {
 
 Route::get('/users', [MainController::class, 'index']);
 Route::get('/users/{id:user}', [MainController::class, 'user']);
+Route::get('/users/{id:user}/invoices', [MainController::class, 'invoices']);
+Route::post('/users/{id:user}/invoices/create', [MainController::class, 'createInvoice']);
 
