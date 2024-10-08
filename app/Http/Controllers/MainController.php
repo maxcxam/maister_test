@@ -42,6 +42,6 @@ class MainController extends Controller
 
     public function invoice(Invoice $invoice)
     {
-        dd($invoice);
+        return view('invoice', compact('invoice'));
     }
 }
