@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/refresh', function () {
-    Artisan::call('migrate:fresh --seed');
+    Artisan::call('migrate:fresh --seed --force');
     return redirect('/users')->with('success', 'Database refreshed');
 })->name('refresh-database');
 
