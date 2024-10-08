@@ -10,7 +10,7 @@ Route::get('/', function () {
 Route::get('/refresh', function () {
     Artisan::call('migrate:fresh --seed');
     return redirect('/users')->with('success', 'Database refreshed');
-});
+})->name('refresh-database');
 
 Route::get('/users', [MainController::class, 'index'])->name('users.index');
 Route::get('/users/{user:id}', [MainController::class, 'user'])->name('users.show');
