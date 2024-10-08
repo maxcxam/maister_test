@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -12,6 +13,10 @@ class Invoice extends Model
         'total',
         'state',
         'user_id',
+    ];
+
+    protected $casts = [
+        'state' => Status::class,
     ];
 
     public static function generateNo()
@@ -26,5 +31,10 @@ class Invoice extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

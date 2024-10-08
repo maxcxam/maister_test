@@ -26,7 +26,7 @@
                                     <td class="whitespace-nowrap px-6 py-4">{{$user->orders->filter(fn($order) => $order->state->equals(\App\Enums\Status::IN_PROGRESS))->count()}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">{{$user->orders->filter(fn($order) => $order->state->equals(\App\Enums\Status::COMPLETED))->count()}}</td>
                                     <td class="whitespace-nowrap px-6 py-4">
-                                        <a href="{{route('users.show', $user->id)}}">Go to orders</a>
+                                        <a href="{{route('users.show', $user->id)}}" class="font-medium text-blue-600  hover:underline">Go to orders</a>
                                     </td>
                                 </tr>
                             @endforeach
