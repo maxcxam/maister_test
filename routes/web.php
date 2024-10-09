@@ -4,11 +4,11 @@ use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('users.index');
 });
 
 Route::get('/refresh', function () {
-    Artisan::call('migrate:fresh --seed');
+    Artisan::call('migrate:fresh --seed --force');
     return redirect('/users')->with('success', 'Database refreshed');
 })->name('refresh-database');
 
