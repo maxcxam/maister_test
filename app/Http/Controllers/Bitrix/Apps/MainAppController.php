@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Bitrix\Apps;
 use App\B24\CRest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MainAppController extends Controller
 {
