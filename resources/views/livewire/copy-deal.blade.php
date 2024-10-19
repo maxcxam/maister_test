@@ -68,7 +68,7 @@
         @endif
 
         @if($url)
-            <a href="{{$url}}" target="_top" >Перейти до нової угоди</a>
+            <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-opacity duration-500" href="{{$url}}" target="_top" >Перейти до нової угоди</a>
         @endif
 
 
