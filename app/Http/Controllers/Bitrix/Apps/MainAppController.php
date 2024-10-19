@@ -12,7 +12,7 @@ class MainAppController extends Controller
     public function install(Request $request)
     {
         $result = CRest::installApp();
-        Log::info('install: Request was handled', ['request' => $request->all(), 'result'=>'ok']);
+        Log::info('install: Request was handled', ['result'=>$result]);
         return view('bitrix.apps.index', compact('result'));
     }
 
