@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Request;
 
 class MainAppController extends Controller
 {
-    public function install()
+    public function install(Request $request)
     {
         $result = CRest::installApp();
+        Log::info('Request was handled', ['request' => $request->all(), 'result'=>'ok']);
         return view('bitrix.apps.index', compact('result'));
     }
 
