@@ -26,7 +26,7 @@ class BitrixTaskManager
         $newDeal = [
             'fields' => [
                 'TITLE' => $title,
-                'TYPE_ID' => $parentDeal['result']['TYPE'],
+                'TYPE_ID' => $parentDeal['result']['TYPE_ID'],
                 'STAGE_ID' => 'NEW',
                 'CONTACT_IDS' => [
                     ['ID' => $contacts['result'][0]['CONTACT_ID']]
