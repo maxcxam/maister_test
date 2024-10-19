@@ -28,5 +28,6 @@ class CopyDeal extends Component
     public function restart(): void
     {
         $this->step = 0;
+        $this->type = NULL;
     }
 }
