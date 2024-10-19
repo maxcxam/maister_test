@@ -18,6 +18,6 @@
 
 
     @if($step > 0)
-        <button class="border rounded border-green-950 bg-green-700 text-white hover:text-black hover:shadow hover:border-green-700 hover:bg-green-950 font-bold" wire:click="reset">Почати спочатку</button>
+        <button class="border rounded border-green-950 bg-green-700 text-white hover:text-black hover:shadow hover:border-green-700 hover:bg-green-950 font-bold" wire:click="restart">Почати спочатку</button>
     @endif
 </div>

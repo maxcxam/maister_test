@@ -25,7 +25,7 @@ class CopyDeal extends Component
         $this->step = 1;
     }
 
-    public function reset()
+    public function restart(): void
     {
         $this->step = 0;
     }
