@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Services\BitrixTaskManager;
+use App\Services\TelegramService;
 use Livewire\Component;
 
 class CopyDeal extends Component
@@ -41,6 +42,7 @@ class CopyDeal extends Component
 
     public function confirm()
     {
-        BitrixTaskManager::createCopyDeal($this->dealId, $this->type);
+        $result = BitrixTaskManager::createCopyDeal($this->dealId, $this->type);
+        (new TelegramService())->sendJsonFile($result);
     }
 }

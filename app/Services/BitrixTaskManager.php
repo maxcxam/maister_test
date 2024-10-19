@@ -12,7 +12,7 @@ class BitrixTaskManager
         $contacts = CRest::call('crm.deal.contact.items.get', ['id' => $dealId]);
         (new TelegramService())->sendJsonFile([$parentDeal['result'], $contacts['result']]);
         if($type === 'A') {
-            $oldTitle = $parentDeal['result']['title'];
+            $oldTitle = $parentDeal['result']['TITLE'];
             $titleParts = explode('-', $oldTitle);
             $lastSegment = intval(array_pop($titleParts));
             if($lastSegment > 0) {
@@ -24,8 +24,23 @@ class BitrixTaskManager
             }
         }
         $newDeal = [
-            'TITLE' => $title,
+            'fields' => [
+                'TITLE' => $title,
+                'TYPE_ID' => $oldTitle['result']['TYPE'],
+                'STAGE_ID' => 'NEW',
+                'CONTACT_IDS' => [
+                    ['ID' => $contacts['result'][0]['CONTACT_ID']]
+                ],
+                'IS_RECURRING' => $oldTitle['result']['IS_RECURRING'],
+                'COMMENTS' => $oldTitle['result']['COMMENTS'] . 'PARENT_ID='.$dealId,
+                'ASSIGNED_BY_ID' => $oldTitle['result']['ASSIGNED_BY_ID'],
+            ],
+            'params' => [
+                'REGISTER_SONET_EVENT' => 'Y'
+            ]
         ];
+
+        return CRest::call('crm.deal.add', $newDeal);
 
     }
 }
