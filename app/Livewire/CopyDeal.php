@@ -23,6 +23,10 @@ class CopyDeal extends Component
     public function changeType()
     {
         $this->step = 1;
-        return view('livewire.copy-deal');
+    }
+
+    public function reset()
+    {
+        $this->step = 0;
     }
 }
