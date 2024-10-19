@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\B24\CRest;
 use App\Events\OnDealAddEvent;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
 class OnDealAddEventListener

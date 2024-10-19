@@ -23,9 +23,10 @@ class MainAppController extends Controller
         $result = $request->all();
         $event = array_key_exists('event', $result) ? $result['event'] : null;
         match ($event) {
-            'ONCRMDEALADD' => (new OnDealAddEvent($result)),
+            'ONCRMDEALADD' => OnDealAddEvent::dispatch($result),
             default => null
         };
+        Log::emergency('handler: Event ' .$event. ' was handled');
         return view('bitrix.apps.handler', compact('result'));
     }
 }
