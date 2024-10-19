@@ -25,13 +25,22 @@ class CopyDeal extends Component
 
     public function changeType()
     {
-        $this->step = 1;
-        BitrixTaskManager::createCopyDeal($this->dealId, $this->type);
     }
 
     public function restart(): void
     {
         $this->step = 0;
         $this->type = NULL;
+    }
+
+    public function createDeal()
+    {
+        sleep(1);
+        $this->step = 1;
+    }
+
+    public function confirm()
+    {
+        BitrixTaskManager::createCopyDeal($this->dealId, $this->type);
     }
 }

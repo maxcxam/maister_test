@@ -18,4 +18,4 @@ Route::get('/users/{user:id}/invoices', [MainController::class, 'invoices']);
 Route::post('/users/{user:id}/invoices/create', [MainController::class, 'createInvoice'])->name('invoices.create');
 
 Route::get('/invoices/{invoice:id}', [MainController::class, 'invoice'])->name('invoice');
-
+Route::get('/deal', \App\Livewire\CopyDeal::class);
