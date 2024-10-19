@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(AllowIFrameMiddleware::class);
+        // $middleware->append(AllowIFrameMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
