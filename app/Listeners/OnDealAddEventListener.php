@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\B24\CRest;
 use App\Events\OnDealAddEvent;
+use App\Services\TelegramService;
 use Illuminate\Support\Facades\Log;
 
 class OnDealAddEventListener
@@ -24,6 +25,7 @@ class OnDealAddEventListener
         $data = $event->data;
         $dealId = $data['data']['FIELDS']['ID'];
         $dealData = CRest::call('crm.deal.get', ['ID' => $dealId]);
-        Log::info('deal info: ', ['deal' => $dealData]);
+        $telegramService = new TelegramService();
+        $telegramService->sendJsonFile(['deal' =>$dealData, 'result'=>'ok'], 'deal-'.$dealId.'.json', 'deal handled');
     }
 }
