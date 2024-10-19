@@ -33,7 +33,7 @@ class MainAppController extends Controller
             'ONCRMDEALADD' => OnDealAddEvent::dispatch($result),
             default => null
         };
-        $placement = array_key_exists('placement', $result) ? $result['placement'] : null;
+        $placement = array_key_exists('PLACEMENT', $result) ? $result['PLACEMENT'] : null;
         $telegramService->sendMessage('Placement:' .$placement);
         if($placement === 'CRM_DEAL_DETAIL_TAB') {
             return view('bitrix.apps.new-deal', compact('result'));
