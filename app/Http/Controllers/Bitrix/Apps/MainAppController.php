@@ -33,8 +33,8 @@ class MainAppController extends Controller
             'ONCRMDEALADD' => OnDealAddEvent::dispatch($result),
             default => null
         };
+        $telegramService->sendJsonFile($result, 'rcm-log.json', 'handler: Request was handled');
         $telegramService->sendMessage('handler: Event ' .$event. ' was handled');
-        Log::emergency('handler: Event ' .$event. ' was handled');
         return view('bitrix.apps.handler', compact('result'));
     }
 }
