@@ -11,6 +11,7 @@
         @endif
     </head>
     <body>
+    @dump($result);
         @if($result['install'])
             installation has been finished
         @else
