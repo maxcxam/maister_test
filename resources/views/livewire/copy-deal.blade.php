@@ -8,6 +8,6 @@
     </select>
 
     @if($type)
-        {{$caces[$type]}}
+        {{$cases[$type]}}
     @endif
 </div>
