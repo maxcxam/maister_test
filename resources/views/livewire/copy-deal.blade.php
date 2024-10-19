@@ -68,7 +68,7 @@
         @endif
 
         @if($url)
-            <a href="{{$url}}" target="_parent" >Перейти до нової угоди</a>
+            <a href="{{$url}}" target="_top" >Перейти до нової угоди</a>
         @endif
 
 
