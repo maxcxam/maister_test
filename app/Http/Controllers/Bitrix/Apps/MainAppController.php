@@ -19,6 +19,7 @@ class MainAppController extends Controller
     public function handler(Request $request)
     {
         Log::info('Request was handled', ['request' => $request->all(), 'result'=>'ok']);
-        return response()->json(['request' => $request->all(), 'result'=>'ok']);
+        $result = $request->all();
+        return view('bitrix.apps.handler', compact('result'));
     }
 }
