@@ -11,13 +11,13 @@
     @endif
 
 
-    @if($step == 2)
+    @if($step == 1)
         <div class="bx-ui-sls-selected">{{$cases[$type]}}</div>
     @endif
 
 
 
     @if($step > 0)
-        <button class="border rounded border-green-950 bg-green-700 text-white hover:text-black hover:shadow hover:border-green-700 hover:bg-green-950 font-bold" wire:click="restart">Почати спочатку</button>
+        <button class="border rounded border-green-950 bg-green-700 text-white hover:shadow hover:border-green-700 hover:bg-green-950 font-bold p-2" wire:click="restart">Почати спочатку</button>
     @endif
 </div>
