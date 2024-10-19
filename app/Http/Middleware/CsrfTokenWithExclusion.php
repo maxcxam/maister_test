@@ -3,10 +3,12 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
-class CsrfTokenWithExclusion
+class CsrfTokenWithExclusion extends ValidateCsrfToken
 {
     protected array $exceptPaths = [
         'copy-deal'
@@ -35,9 +37,8 @@ class CsrfTokenWithExclusion
     /**
      * Handle an incoming request.
      *
-     * @param Closure(Request): (Response) $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next): Response
     {
         return $next($request);
     }
