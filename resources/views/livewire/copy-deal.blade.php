@@ -18,7 +18,7 @@
                         wire:click="createDeal"
                         wire:loading.attr="disabled"
                         style="opacity: {{ $type ? '1' : '0' }}; pointer-events: {{ $type ? 'auto' : 'none' }};">
-                    <span wire:loading.remove>Створити угоду</span>
+                    <span wire:loading.remove>Перейти до наступного кроку</span>
                     <span wire:loading>
                         <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -56,7 +56,7 @@
                     wire:click="confirm"
                     wire:loading.attr="disabled"
                     style="opacity: {{ $type ? '1' : '0' }}; pointer-events: {{ $type ? 'auto' : 'none' }};">
-                    <span wire:loading.remove>Перейти до наступного кроку</span>
+                    <span wire:loading.remove>Створити угоду</span>
                     <span wire:loading>
                         <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
