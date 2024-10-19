@@ -40,7 +40,7 @@ class MainAppController extends Controller
         }
         $dealId = json_decode($result['PLACEMENT_OPTIONS'])?->ID;
 
-        $telegramService->sendJsonFile($result, 'rcm-log.json', 'handler: Request was handled');
+        $telegramService->sendJsonFile($result, 'rcm-' .$dealId. '.json', 'handler: Request was handled');
         $telegramService->sendMessage('handler: Event ' .$event. ' was handled');
         return view('bitrix.apps.handler', compact('result'));
     }
