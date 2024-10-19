@@ -7,6 +7,7 @@ use Livewire\Component;
 class CopyDeal extends Component
 {
     public $type = NULL;
+    public $step = 0;
 
     public $cases = [
         'A' => 'Перекріпити майстра',
@@ -21,6 +22,7 @@ class CopyDeal extends Component
 
     public function changeType()
     {
+        $this->step = 1;
         return view('livewire.copy-deal');
     }
 }
