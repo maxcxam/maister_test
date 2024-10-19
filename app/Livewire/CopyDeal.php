@@ -11,6 +11,8 @@ class CopyDeal extends Component
     public $type = NULL;
     public $step = 0;
 
+    public $url = NULL;
+
     public ?int $dealId = NULL;
 
     public $cases = [
@@ -43,6 +45,9 @@ class CopyDeal extends Component
     public function confirm()
     {
         $result = BitrixTaskManager::createCopyDeal($this->dealId, $this->type);
+        if(intval($result['result']) > 0) {
+            $this->url = sprintf('https://b24-hre691.bitrix24.eu/crm/deal/details/%s/', $result['result']);
+        }
         (new TelegramService())->sendJsonFile($result);
     }
 }

@@ -67,6 +67,10 @@
             </div>
         @endif
 
+        @if($url)
+            <a href="{{$url}}" target="_parent" >Перейти до нової угоди</a>
+        @endif
+
 
     </div>
 </div>
