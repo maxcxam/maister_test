@@ -32,6 +32,7 @@ class CRest
 
     public static function installApp()
     {
+        dd($_REQUEST);
         $result = [
             'rest_only' => true,
             'install' => false
