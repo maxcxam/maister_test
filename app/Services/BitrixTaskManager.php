@@ -26,14 +26,14 @@ class BitrixTaskManager
         $newDeal = [
             'fields' => [
                 'TITLE' => $title,
-                'TYPE_ID' => $oldTitle['result']['TYPE'],
+                'TYPE_ID' => $parentDeal['result']['TYPE'],
                 'STAGE_ID' => 'NEW',
                 'CONTACT_IDS' => [
                     ['ID' => $contacts['result'][0]['CONTACT_ID']]
                 ],
-                'IS_RECURRING' => $oldTitle['result']['IS_RECURRING'],
-                'COMMENTS' => $oldTitle['result']['COMMENTS'] . 'PARENT_ID='.$dealId,
-                'ASSIGNED_BY_ID' => $oldTitle['result']['ASSIGNED_BY_ID'],
+                'IS_RECURRING' => $parentDeal['result']['IS_RECURRING'],
+                'COMMENTS' => $parentDeal['result']['COMMENTS'] . 'PARENT_ID='.$dealId,
+                'ASSIGNED_BY_ID' => $parentDeal['result']['ASSIGNED_BY_ID'],
             ],
             'params' => [
                 'REGISTER_SONET_EVENT' => 'Y'
