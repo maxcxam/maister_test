@@ -35,10 +35,11 @@ class MainAppController extends Controller
         };
         $placement = array_key_exists('PLACEMENT', $result) ? $result['PLACEMENT'] : null;
         $telegramService->sendMessage('Placement:' .$placement);
-        if($placement === 'CRM_DEAL_DETAIL_TAB') {
-            return view('bitrix.apps.new-deal', compact('result'));
-        }
         $dealId = json_decode($result['PLACEMENT_OPTIONS'])?->ID;
+        if($placement === 'CRM_DEAL_DETAIL_TAB') {
+            return view('bitrix.apps.new-deal', compact('result', 'dealId'));
+        }
+
 
         $telegramService->sendJsonFile($result, 'rcm-' .$dealId. '.json', 'handler: Request was handled');
         $telegramService->sendMessage('handler: Event ' .$event. ' was handled');

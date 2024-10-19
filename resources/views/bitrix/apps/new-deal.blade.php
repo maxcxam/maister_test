@@ -1,3 +1,3 @@
 <x-layouts.bitrix.app>
-    @livewire('copy-deal')
+    @livewire('copy-deal', ['dealId' => $dealId])
 </x-layouts.bitrix.app>

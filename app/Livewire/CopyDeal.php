@@ -9,6 +9,10 @@ class CopyDeal extends Component
     public $type = NULL;
     public $step = 0;
 
+    public function __construct(public int $dealId)
+    {
+    }
+
     public $cases = [
         'A' => 'Перекріпити майстра',
         'B' => 'Допродана угода',
