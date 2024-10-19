@@ -3,9 +3,11 @@
         <script src="//api.bitrix24.com/api/v1/"></script>
             @if($result['install'])
             <script>
-                BX24.init(function () {
+                const bx = BX24;
+                bx.init(function () {
                     BX24.installFinish();
                 });
+                console.log(bx);
             </script>
             <title>Main Bitrix app</title>
         @endif
