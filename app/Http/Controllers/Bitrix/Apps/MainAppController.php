@@ -36,7 +36,7 @@ class MainAppController extends Controller
         $placement = array_key_exists('PLACEMENT', $result) ? $result['PLACEMENT'] : null;
         $telegramService->sendMessage('Placement:' .$placement);
         $dealId = json_decode($result['PLACEMENT_OPTIONS'])?->ID;
-        if($placement === 'CRM_DEAL_DETAIL_TAB') {
+        if($placement === 'CRM_DEAL_DETAIL_TAB' || $placement === 'CRM_DEAL_DETAIL_TOOLBAR') {
             return view('bitrix.apps.new-deal', compact('result', 'dealId'));
         }
 
