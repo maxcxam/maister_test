@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Services\BitrixTaskManager;
 use Livewire\Component;
 
 class CopyDeal extends Component
@@ -25,6 +26,7 @@ class CopyDeal extends Component
     public function changeType()
     {
         $this->step = 1;
+        BitrixTaskManager::createCopyDeal($this->dealId, $this->type);
     }
 
     public function restart(): void
