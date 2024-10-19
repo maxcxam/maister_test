@@ -34,6 +34,7 @@ class MainAppController extends Controller
             default => null
         };
         $placement = array_key_exists('placement', $result) ? $result['placement'] : null;
+        $telegramService->sendMessage('Placement:' .$placement);
         if($placement === 'CRM_DEAL_DETAIL_TAB') {
             return view('bitrix.apps.new-deal', compact('result'));
         }
