@@ -32,7 +32,7 @@ class BitrixTaskManager
                     ['ID' => $contacts['result'][0]['CONTACT_ID']]
                 ],
                 'IS_RECURRING' => $parentDeal['result']['IS_RECURRING'],
-                'COMMENTS' => $parentDeal['result']['COMMENTS'] . 'PARENT_ID='.$dealId,
+                'COMMENTS' => !empty($parentDeal['result']['COMMENTS']) ? $parentDeal['result']['COMMENTS'] : 'PARENT_ID='.$dealId,
                 'ASSIGNED_BY_ID' => $parentDeal['result']['ASSIGNED_BY_ID'],
             ],
             'params' => [
