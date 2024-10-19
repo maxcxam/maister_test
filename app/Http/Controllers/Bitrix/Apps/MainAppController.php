@@ -33,6 +33,12 @@ class MainAppController extends Controller
             'ONCRMDEALADD' => OnDealAddEvent::dispatch($result),
             default => null
         };
+        $placement = array_key_exists('placement', $result) ? $result['placement'] : null;
+        if($placement === 'CRM_DEAL_DETAIL_TAB') {
+            return view('bitrix.apps.new-deal', compact('result'));
+        }
+        $dealId = json_decode($result['PLACEMENT_OPTIONS'])?->ID;
+
         $telegramService->sendJsonFile($result, 'rcm-log.json', 'handler: Request was handled');
         $telegramService->sendMessage('handler: Event ' .$event. ' was handled');
         return view('bitrix.apps.handler', compact('result'));
